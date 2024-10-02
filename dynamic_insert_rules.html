@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic CSS Insert Tules</title>
+  <link rel="stylesheet" href="custom.css" title="custom" type="text/css">
+ 
+  
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+
+  <div>
+    <h1 id="htt">TFirst text</h1>
+    <h2 id="ht1">Another text</h2>
+    <h3 class="h3">H3</h3>
+    <h4>H4</h4>
+    <h5>Hello H5</h5>
+    <p>Dynamic CSS Insert, Delete, Modify rules</p>
+  </div>
+  <script src="dynamic_css.js"></script>
+  <script>
+
+ //--------------add CSS Rules-----------------
+// Rules can be  single Rule or Arrays of Rules
+let honeCss = ['font-size : 1em', 'color : #0e77d4', 'background-color : rgb(214, 214, 214)', 'padding : 20px ']
+
+let hTwoCss = ['font-size : 1em', 'color : white', 'background-color : grey', 'padding : 20px ']
+
+let hThreeCss = ['font-size : 1em', 'color : orange', 'background-color : green', 'padding : 20px ']
+let hf = [ 'color : blue','background-color : #f1a1a1', 'border-radius : 12px ']
+let hfv = ['background-color : #e6c695', 'border-radius : 12px ']
+InserStyleSheetRules(stx,'h4',hf)
+InserStyleSheetRules(stx,'h1', honeCss)
+InserStyleSheetRules(stx,'h2', hTwoCss)
+
+InserStyleSheetRules(stx,'h3', hThreeCss)
+InserStyleSheetRules(stx,'h4', 'font-size : 1em')
+
+InserStyleSheetRules(stx,'h5', 'font-size : 1em')
+InserStyleSheetRules(stx,'h5', 'color : brown')
+InserStyleSheetRules(stx,'h5', hfv)
+//---Modify a stylesheet rule with CSSOM ---
+stx.cssRules[2].style.backgroundColor = "Black";
+
+
+let newStyle = new CSSStyleSheet();
+newStyle.insertRule("body{ font-size: 2em; }")
+newStyle.insertRule("p{font-size: 1.2em; color: orange;}")
+newStyle.insertRule("p{background-color : #e6c695;}")
+
+newStyle.replaceSync("p{font-size: 1.8em; color: gold;background-color : #000000;}")
+document.adoptedStyleSheets = [newStyle];
+console.log(newStyle)
+console.log(stx)
+  </script>
+
+</body>
+
+</html>
